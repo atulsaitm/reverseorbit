@@ -1,0 +1,152 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  font-family: 'Inter', system-ui, -apple-system, sans-serif;
+  --glass-bg: rgba(25, 25, 30, 0.6);
+  --glass-border: rgba(255, 255, 255, 0.06);
+  --warm-accent: #d4a574;
+}
+
+code, pre, .mono {
+  font-family: 'JetBrains Mono', monospace;
+}
+
+body {
+  background: #0a0a0c;
+  background-image:
+    radial-gradient(ellipse at 20% 50%, rgba(212, 165, 116, 0.03) 0%, transparent 50%),
+    radial-gradient(ellipse at 80% 20%, rgba(168, 216, 234, 0.02) 0%, transparent 50%);
+}
+
+::-webkit-scrollbar {
+  width: 5px;
+  height: 5px;
+}
+
+::-webkit-scrollbar-thumb {
+  background: rgba(255, 255, 255, 0.08);
+  border-radius: 10px;
+}
+
+@layer components {
+  .glass {
+    background: var(--glass-bg);
+    backdrop-filter: blur(20px) saturate(1.2);
+    -webkit-backdrop-filter: blur(20px) saturate(1.2);
+    border: 1px solid var(--glass-border);
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3), inset 0 1px 0 rgba(255,255,255,0.04);
+  }
+
+  .glass-sm {
+    background: rgba(25, 25, 30, 0.4);
+    backdrop-filter: blur(12px) saturate(1.1);
+    -webkit-backdrop-filter: blur(12px) saturate(1.1);
+    border: 1px solid rgba(255,255,255,0.04);
+  }
+
+  .glass-card {
+    background: rgba(20, 20, 24, 0.7);
+    backdrop-filter: blur(16px) saturate(1.15);
+    -webkit-backdrop-filter: blur(16px) saturate(1.15);
+    border: 1px solid rgba(255,255,255,0.05);
+    border-radius: 1rem;
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.25), inset 0 1px 0 rgba(255,255,255,0.04);
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  }
+
+  .glass-card:hover {
+    border-color: rgba(255,255,255,0.08);
+    transform: translateY(-1px);
+  }
+
+  .key-btn {
+    background: linear-gradient(180deg, #2a2a2e 0%, #1e1e22 100%);
+    border: 1px solid rgba(255,255,255,0.08);
+    border-radius: 0.625rem;
+    box-shadow: 0 1px 0 rgba(255,255,255,0.05), 0 4px 6px rgba(0,0,0,0.4), 0 1px 3px rgba(0,0,0,0.3), inset 0 1px 0 rgba(255,255,255,0.08);
+    transition: all 0.15s cubic-bezier(0.4, 0, 0.2, 1);
+    position: relative;
+    overflow: hidden;
+  }
+
+  .key-btn::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 50%;
+    background: linear-gradient(180deg, rgba(255,255,255,0.04) 0%, transparent 100%);
+  }
+
+  .key-btn.key-active {
+    background: linear-gradient(180deg, rgba(212, 165, 116, 0.15) 0%, rgba(212, 165, 116, 0.08) 100%);
+    border-color: rgba(212,165,116,0.3);
+    color: #d4a574;
+    box-shadow: 0 0 12px rgba(212,165,116,0.1), 0 4px 6px rgba(0,0,0,0.3), inset 0 1px 0 rgba(212,165,116,0.1);
+  }
+
+  .metal-input {
+    background: rgba(15, 15, 18, 0.8);
+    border: 1px solid rgba(255,255,255,0.06);
+    border-radius: 0.75rem;
+    box-shadow: inset 0 2px 4px rgba(0,0,0,0.3), 0 1px 0 rgba(255,255,255,0.03);
+  }
+
+  .metal-input:focus {
+    border-color: rgba(212,165,116,0.3);
+    box-shadow: inset 0 2px 4px rgba(0,0,0,0.3), 0 0 0 3px rgba(212,165,116,0.08);
+    outline: none;
+  }
+
+  .metal-badge {
+    background: linear-gradient(135deg, rgba(192,192,192,0.1) 0%, rgba(192,192,192,0.05) 100%);
+    border: 1px solid rgba(192,192,192,0.15);
+    border-radius: 0.5rem;
+    box-shadow: 0 1px 3px rgba(0,0,0,0.2);
+  }
+
+  .btn-primary {
+    background: linear-gradient(135deg, #d4a574 0%, #b8895c 100%);
+    color: #0a0a0c;
+    font-weight: 600;
+    border-radius: 0.75rem;
+    box-shadow: 0 4px 12px rgba(212,165,116,0.25), 0 1px 3px rgba(0,0,0,0.3);
+    transition: all 0.2s ease;
+  }
+
+  .btn-primary:hover {
+    transform: translateY(-1px);
+  }
+}
+
+.progress-bar {
+  background: linear-gradient(90deg, #d4a574, #e8b4b8, #a8d8ea, #d4a574);
+  background-size: 300% 100%;
+  animation: gradient-shift 3s ease infinite;
+}
+
+@keyframes gradient-shift {
+  0% { background-position: 0% 0%; }
+  50% { background-position: 100% 0%; }
+  100% { background-position: 0% 0%; }
+}
+
+.cytoscape-container {
+  width: 100%;
+  height: 100%;
+  min-height: 520px;
+}
+
+.dot-pattern {
+  background-image: radial-gradient(rgba(255,255,255,0.03) 1px, transparent 1px);
+  background-size: 24px 24px;
+}
+
+.warm-divider {
+  height: 1px;
+  background: linear-gradient(90deg, transparent, rgba(212,165,116,0.2), transparent);
+}
+

@@ -1,0 +1,13 @@
+[package]
+name = "reverseorbit-radare2"
+version.workspace = true
+edition.workspace = true
+license.workspace = true
+authors.workspace = true
+
+[dependencies]
+anyhow.workspace = true
+chrono.workspace = true
+serde_json.workspace = true
+reverseorbit-core = { path = "../reverseorbit-core" }
+

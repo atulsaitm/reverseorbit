@@ -1,0 +1,25 @@
+[package]
+name = "reverseorbit-app"
+version.workspace = true
+edition.workspace = true
+license.workspace = true
+authors.workspace = true
+
+[dependencies]
+anyhow.workspace = true
+axum.workspace = true
+chrono.workspace = true
+clap.workspace = true
+futures-util.workspace = true
+serde.workspace = true
+serde_json.workspace = true
+tokio.workspace = true
+tower-http.workspace = true
+tracing.workspace = true
+tracing-subscriber.workspace = true
+webbrowser.workspace = true
+
+reverseorbit-core = { path = "../reverseorbit-core" }
+reverseorbit-mcp = { path = "../reverseorbit-mcp" }
+reverseorbit-radare2 = { path = "../reverseorbit-radare2" }
+

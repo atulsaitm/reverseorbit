@@ -1,0 +1,54 @@
+# ReverseOrbit MCP server configuration for Codex.
+#
+# Codex CLI v0.118–v0.120 on Linux has a confirmed bug
+# (github.com/openai/codex/issues/17024) where it never sends `initialize`
+# over stdio — the connection always times out.
+#
+# Workaround: use the built-in HTTP MCP endpoint exposed by the server.
+# Codex's Streamable HTTP transport works correctly on Linux.
+#
+# ── Workflow ────────────────────────────────────────────────────────────────
+#
+#   Terminal 1 — start the ReverseOrbit HTTP server:
+#
+#     cd ~/Downloads/reverseorbit/reverseorbit
+#     cargo run -p reverseorbit-app -- server --port 4080
+#
+#   Terminal 2 — open Codex:
+#
+#     cd ~/Downloads/reverseorbit/reverseorbit
+#     codex
+#
+# ── Available MCP tools ─────────────────────────────────────────────────────
+#
+#   start_case          – create a case and run static analysis on a binary
+#   list_cases          – list all local cases
+#   get_case_summary    – metadata and counts for a case
+#   get_timeline        – step-by-step RE timeline
+#   inspect_entity      – inspect a function, import, string, or artifact
+#   query_findings      – search deterministic findings
+#   explain_finding     – evidence-backed explanation for a finding
+#   get_graph_view      – provenance / call_graph / cfg / xref / string graph
+#   run_next_action     – execute a follow-up action (xref probe, CFG expand)
+#   list_radare_commands – catalog of safe radare2 query commands
+#   run_radare_query    – run a live radare2 JSON query against a binary
+#   search_strings_live – live string search via radare2
+#   export_case         – export graphs as GraphML
+#
+# ── Revert to stdio (once Codex fixes the Linux bug) ────────────────────────
+#
+#   command             = "/home/neverstare/Downloads/reverseorbit/reverseorbit/target/debug/reverseorbit-app"
+#   args                = ["mcp"]
+#   cwd                 = "/home/neverstare/Downloads/reverseorbit/reverseorbit"
+#   enabled             = true
+#   startup_timeout_sec = 30
+#   tool_timeout_sec    = 180
+
+[mcp_servers.reverseorbit]
+url                 = "http://localhost:4080/mcp"
+enabled             = true
+startup_timeout_sec = 30
+tool_timeout_sec    = 180
+
+[mcp_servers.reverseorbit.tools.list_radare_commands]
+approval_mode = "approve"
